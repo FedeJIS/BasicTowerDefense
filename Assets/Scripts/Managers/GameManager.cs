@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private LevelData levelData;
+    [SerializeField] private WavesManager wavesManager;
     void Start()
     {
-        
+        wavesManager.WavesData = levelData.WaveData;
+        wavesManager.NextWave();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -7,7 +7,8 @@ public class WaveData : ScriptableObject
 {
    [SerializeField] private int creepsAmount;
    [SerializeField] private int timeToSpawn;
-
+   
    public int CreepsAmount => creepsAmount;
    public int TimeToSpawn => timeToSpawn;
+   
 }
