@@ -8,6 +8,7 @@ public class WavesManager : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private CreepFactory creepFactory;
+    [SerializeField] private Canvas healthCanvas;
     public WaveData[] WavesData { get; set; }
 
     private int _currentWaveIndex;
@@ -33,7 +34,7 @@ public class WavesManager : MonoBehaviour
             
             creepsAmount -= randomAmount;
 
-            var creeps = creepFactory.FabricateRandomCreepWave(randomAmount,GetRandomSpawnPoint());
+            var creeps = creepFactory.FabricateRandomCreepWave(randomAmount,GetRandomSpawnPoint(),healthCanvas);
 
             foreach (var creep in creeps)
             {

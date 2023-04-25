@@ -6,19 +6,19 @@ using UnityEngine;
 public class BaseCreep : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CreepData data;
-    
+
     public Action CreepKilled;
 
     protected float CurrentHealth;
 
     private Transform _enemyBase;
-
+    
     protected void Start()
     {
         CurrentHealth = data.Health;
         _enemyBase = GameObject.Find("Base").transform;
     }
-
+    
 
     private void MoveTowardsBase()
     {

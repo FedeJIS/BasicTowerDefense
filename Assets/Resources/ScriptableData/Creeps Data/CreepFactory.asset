@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCreep: {fileID: 6062474898863262898, guid: cc1690cde1bfb49158f54df1062eaf1a, type: 3}
   frostCreep: {fileID: 6062474898863262898, guid: 03dfb865ef6474e68a8586ba6eb0492d, type: 3}
+  healthbarComponent: {fileID: 5285206715124303798, guid: 196d7504549025744a5bd0d22f30b2f0, type: 3}

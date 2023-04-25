@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBarComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]  private Slider _healthBar;
+    
+    public void TakeDamage(float damage)
     {
-        
+        _healthBar.value = (_healthBar.value - damage) / _healthBar.maxValue;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
