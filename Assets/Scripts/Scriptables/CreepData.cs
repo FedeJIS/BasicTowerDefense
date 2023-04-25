@@ -7,8 +7,11 @@ public class CreepData : ScriptableData
     [SerializeField] private int damagePoints;
     [SerializeField] private int health;
     [SerializeField] private int speed;
+    [SerializeField] private int reward;
 
     public int Damage => damagePoints;
     public int Health => health;
     public int Speed => speed;
+
+    public int Reward => reward;
 }

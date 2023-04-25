@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b020da622ed8b43aae3615f8d1ccbb, type: 3}
   m_Name: BaseCreepData
   m_EditorClassIdentifier: 
-  type: 0
+  dataName: BaseCreep
+  id: 0
+  prefab: {fileID: 6062474898863262898, guid: cc1690cde1bfb49158f54df1062eaf1a, type: 3}
   damagePoints: 10
   health: 10
   speed: 3
-  prefab: {fileID: 6062474898863262898, guid: cc1690cde1bfb49158f54df1062eaf1a, type: 3}
+  reward: 1

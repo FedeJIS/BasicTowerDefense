@@ -17,6 +17,7 @@ public class WavesManager : MonoBehaviour
 
     public Action NoWavesLeft;
     public Action WaveFinished;
+    public Action<int> CreepKilled;
 
     private GenericFactory<CreepData> creepFactory;
 
@@ -52,9 +53,11 @@ public class WavesManager : MonoBehaviour
 
     }
 
-    private void CountKilledCreeps()
+    private void CountKilledCreeps(int reward)
     {
         _currentCreepsKilled--;
+        
+        CreepKilled?.Invoke(reward);
         
         if(_currentCreepsKilled <= 0) WaveFinished?.Invoke();
     }

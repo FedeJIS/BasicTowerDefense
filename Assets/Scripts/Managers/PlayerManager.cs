@@ -10,8 +10,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private NexusData _nexusData;
     private float _nexusHealth;
 
+    private static int _coins;
+
+    public static int PlayerCoins => _coins;
     public Action PlayerLost;
 
+    public static Action<int> PlayerRewarded;
 
     public void SetUpPlayer(NexusData nexusData)
     {
@@ -45,5 +49,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             ReceiveDamage(damageable.CauseDamage());
         }
+    }
+
+    public void EarnCoins(int amount)
+    {
+        _coins += amount;
+        PlayerRewarded?.Invoke(_coins);
     }
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2517e3c847fcf1c468bd434e65814976, type: 3}
   m_Name: BaseTurretData
   m_EditorClassIdentifier: 
+  dataName: Base
   id: 1
-  damagePoints: 10
-  buildCost: 5
   prefab: {fileID: 3312728997542272041, guid: ad95cf0532fb840edb99302196037be4, type: 3}
+  damagePoints: 10
+  buildCost: 1

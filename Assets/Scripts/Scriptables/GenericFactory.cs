@@ -55,4 +55,9 @@ public class GenericFactory<T> where T : ScriptableData
         var data =  _map.ElementAt(index).Value;
         return data.Prefab;
     }
+
+    public List<T> GetAllData()
+    {
+        return _map.Values.ToList();
+    }
 }

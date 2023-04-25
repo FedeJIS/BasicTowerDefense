@@ -7,7 +7,7 @@ public class BaseCreep : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CreepData data;
 
-    public Action CreepKilled;
+    public Action<int> CreepKilled;
 
     protected float CurrentHealth;
 
@@ -46,7 +46,7 @@ public class BaseCreep : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        CreepKilled?.Invoke();
+        CreepKilled?.Invoke(data.Reward);
         Destroy(gameObject);
     }
 

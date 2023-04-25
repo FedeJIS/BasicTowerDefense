@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2517e3c847fcf1c468bd434e65814976, type: 3}
   m_Name: FrostTurretData
   m_EditorClassIdentifier: 
+  dataName: Frost
   id: 2
-  damagePoints: 5
-  buildCost: 5
   prefab: {fileID: 3312728997542272041, guid: 2db840306d61e4e1d8ed7a2a17e59dc5, type: 3}
-  type: 1
+  damagePoints: 5
+  buildCost: 1
