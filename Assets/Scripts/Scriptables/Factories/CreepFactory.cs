@@ -18,7 +18,7 @@ public class CreepFactory : ScriptableObject
     {
         var odds = Random.Range(0f, 1f);
 
-        if (odds >= threshold) Instantiate(baseCreep,position);
+        if (odds >= threshold) return Instantiate(baseCreep,position);
 
         return Instantiate(frostCreep,position);
     }

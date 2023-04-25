@@ -9,7 +9,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private NexusData _nexusData;
     private float _nexusHealth;
-    
+
+    public Action PlayerLost;
+
 
     public void SetUpPlayer(NexusData nexusData)
     {
@@ -28,6 +30,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         _nexusHealth -= damage;
         _healthBarComponent.UpdateHealth(_nexusHealth);
+
+        if (_nexusHealth <= 0)
+        {
+            PlayerLost?.Invoke();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

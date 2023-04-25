@@ -680,7 +680,6 @@ MonoBehaviour:
   - {fileID: 266367352}
   - {fileID: 1252222132}
   creepFactory: {fileID: 11400000, guid: 05ba379d4d3caec438e2972c1c3fdab4, type: 2}
-  healthCanvas: {fileID: 221824892}
 --- !u!1 &812399424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,7 +1037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862379436342573650, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}
       propertyPath: m_Radius
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}

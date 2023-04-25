@@ -93,7 +93,7 @@ BoxCollider:
   m_GameObject: {fileID: 3785685471803869578}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -190,7 +190,7 @@ BoxCollider:
   m_GameObject: {fileID: 5434033306124870387}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -287,7 +287,7 @@ BoxCollider:
   m_GameObject: {fileID: 5660999472030634118}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 5457504421431540620}
   - component: {fileID: 2917516083661574320}
   - component: {fileID: -9201017187612086663}
+  - component: {fileID: 6851450362822704706}
   m_Layer: 0
   m_Name: Creep-small
   m_TagString: Untagged
@@ -354,6 +355,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &6851450362822704706
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062474898863262898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7641877310818575618
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +464,7 @@ BoxCollider:
   m_GameObject: {fileID: 7641877310818575618}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

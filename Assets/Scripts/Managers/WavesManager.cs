@@ -8,7 +8,6 @@ public class WavesManager : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private CreepFactory creepFactory;
-    [SerializeField] private Canvas healthCanvas;
     public WaveData[] WavesData { get; set; }
 
     private int _currentWaveIndex;
@@ -38,7 +37,9 @@ public class WavesManager : MonoBehaviour
 
             yield return new WaitForSeconds(_currentWaveData.TimeToSpawn);
         }
-        
+
+        yield return null;
+
     }
 
     private void CountKilledCreeps()
@@ -70,12 +71,6 @@ public class WavesManager : MonoBehaviour
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
     }
 
-    private int GetRandomCreepAmount()
-    {
-        return Random.Range(0, _currentWaveData.CreepsAmount);
-    }
-
-   
 
     #endregion
 
