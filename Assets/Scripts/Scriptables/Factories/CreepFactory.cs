@@ -1,35 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Assets/ScriptableObjects/Creeps/New Creep Factory", order = 0, fileName = "New Creep Factory")]
 public class CreepFactory : ScriptableObject
 {
-    [SerializeField] private GameObject baseCreep;
-    [SerializeField] private GameObject frostCreep;
-    
+    [SerializeField] private CreepData[] creepsData;
 
-    private float threshold = 0.65f;
+    private Dictionary<CreepType, CreepData> _creepMap;
+
+    private const string TurretsPath = "ScriptableData/CreepsData";
     
-    private const float DistanceFactor = 5f;
-    
+    public void InitializeCreepFactory()
+    {
+        creepsData = Resources.LoadAll<CreepData>(TurretsPath);
+        _creepMap = new Dictionary<CreepType, CreepData>();
+
+        foreach (var creepData in creepsData)
+        {
+            if (_creepMap.ContainsKey(creepData.Type)) continue;
+            _creepMap.Add(creepData.Type, creepData);
+        }
+    }
     public GameObject FabricateRandomCreep(Transform position)
     {
-        var odds = Random.Range(0f, 1f);
-
-        if (odds >= threshold) return Instantiate(baseCreep,position);
-
-        return Instantiate(frostCreep,position);
+        return Instantiate(GetRandomCreep(), position);
     }
 
-    public GameObject FabricateBaseCreep(Transform position)
+    private GameObject GetRandomCreep()
     {
-        return Instantiate(baseCreep,position);
+        System.Random rand = new System.Random();
+        var count = _creepMap.Count;
+        int index = rand.Next(0, count);
+        var data =  _creepMap.ElementAt(index).Value;
+        return data.Prefab;
     }
-    
-    public GameObject FabricateFrostCreep(Transform position)
-    {
-        return Instantiate(frostCreep,position);
-    }
+
 }

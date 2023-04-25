@@ -5,13 +5,11 @@ using UnityEngine;
 [Serializable]
 public class TurretData : ScriptableObject
 {
-    [SerializeField] private int id;
     [SerializeField] private int damagePoints;
     [SerializeField] private int buildCost;
     [SerializeField] private GameObject prefab;
     [SerializeField] private TurretType type;
     
-    public int Id => id;
     public int DamagePoints => damagePoints;
     public int BuildCost => buildCost;
     public GameObject Prefab => prefab;

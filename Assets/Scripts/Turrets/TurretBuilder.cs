@@ -37,7 +37,7 @@ public class TurretBuilder : MonoBehaviour, IInitializable
     private void BuildTurret(TurretData selectedTurret)
     {
         //Create Turret to Place
-        var turretToPlace = turretFactory.CreateTurretFromId(selectedTurret.Id);
+        var turretToPlace = turretFactory.CreateTurretFromType(selectedTurret.Type);
 
         if (turretToPlace == null) return;
 

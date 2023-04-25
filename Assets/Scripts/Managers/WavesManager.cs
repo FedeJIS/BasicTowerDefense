@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,12 @@ public class WavesManager : MonoBehaviour
 
     public Action NoWavesLeft;
     public Action WaveFinished;
+
+    private void Start()
+    {
+        creepFactory.InitializeCreepFactory();
+    }
+
     private void SpawnWave()
     {
         StartCoroutine(SpawnCoroutine());

@@ -7,24 +7,24 @@ public class TurretFactory : ScriptableObject
 {
     [SerializeField] private TurretData[] turretsData;
 
-    private Dictionary<int, TurretData> _turretMap;
+    private Dictionary<TurretType, TurretData> _turretMap;
     private const string TurretsPath = "ScriptableData/TurretsData";
     private static int towerIndex;
     public void InitializeTurretFactory()
     {
         turretsData = Resources.LoadAll<TurretData>(TurretsPath);
-        _turretMap = new Dictionary<int, TurretData>();
+        _turretMap = new Dictionary<TurretType, TurretData>();
 
         foreach (var turretData in turretsData)
         {
-            if (_turretMap.ContainsKey(turretData.Id)) continue;
-            _turretMap.Add(turretData.Id, turretData);
+            if (_turretMap.ContainsKey(turretData.Type)) continue;
+            _turretMap.Add(turretData.Type, turretData);
         }
     }
     
-    public GameObject CreateTurretFromId(int id)
+    public GameObject CreateTurretFromType(TurretType type)
     {
-        var turretData = GetTurretFromId(id);
+        var turretData = GetTurretFromType(type);
 
         if (turretData == null) return null;
 
@@ -37,10 +37,10 @@ public class TurretFactory : ScriptableObject
         return turretInstance;
     }
 
-    private TurretData GetTurretFromId(int id)
+    private TurretData GetTurretFromType(TurretType type)
     {
-        if (!_turretMap.ContainsKey(id)) return null;
+        if (!_turretMap.ContainsKey(type)) return null;
 
-        return _turretMap[id];
+        return _turretMap[type];
     }
 }

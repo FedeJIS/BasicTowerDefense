@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b020da622ed8b43aae3615f8d1ccbb, type: 3}
-  m_Name: FrostCreepData
+  m_Script: {fileID: 11500000, guid: 9a30a7f46f3a5764ead1ca5372facd6b, type: 3}
+  m_Name: CreepFactory
   m_EditorClassIdentifier: 
-  Damage: 5
-  Health: 20
-  Speed: 10
+  creepsData:
+  - {fileID: 11400000, guid: 3e62e89d62f3cb545a7f649cb3d5937b, type: 2}
+  - {fileID: 11400000, guid: 17fd1285b2c728145835deecccf8e2c1, type: 2}
