@@ -15,7 +15,7 @@ MonoBehaviour:
   dataName: FrostCreep
   id: 1
   prefab: {fileID: 6062474898863262898, guid: 03dfb865ef6474e68a8586ba6eb0492d, type: 3}
-  damagePoints: 10
-  health: 10
-  speed: 5
+  damagePoints: 25
+  health: 8
+  speed: 2
   reward: 1

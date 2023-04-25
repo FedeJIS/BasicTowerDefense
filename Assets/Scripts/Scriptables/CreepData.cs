@@ -4,14 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Assets/ScriptableObjects/Creeps/New Creep Data", order = 0, fileName = "New Creep Data")]
 public class CreepData : ScriptableData
 {
-    [SerializeField] private int damagePoints;
-    [SerializeField] private int health;
-    [SerializeField] private int speed;
-    [SerializeField] private int reward;
+    [SerializeField] private float damagePoints;
+    [SerializeField] private float health;
+    [SerializeField] private float speed;
+    [SerializeField] private float reward;
 
-    public int Damage => damagePoints;
-    public int Health => health;
-    public int Speed => speed;
+    public float Damage => damagePoints;
+    public float Health => health;
+    public float Speed => speed;
 
-    public int Reward => reward;
+    public float Reward => reward;
 }

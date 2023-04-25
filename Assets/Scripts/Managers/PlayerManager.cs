@@ -10,18 +10,19 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private NexusData _nexusData;
     private float _nexusHealth;
 
-    private static int _coins;
+    private static float _coins;
 
-    public static int PlayerCoins => _coins;
+    public static float PlayerCoins => _coins;
     public Action PlayerLost;
 
-    public static Action<int> PlayerRewarded;
+    public static Action<float> PlayerRewarded;
 
-    public void SetUpPlayer(NexusData nexusData)
+    public void SetUpPlayer(NexusData nexusData, int startingCoins)
     {
         _nexusData = nexusData;
         _healthBarComponent.SetMaxValue(_nexusData.NexusHealth);
         _nexusHealth = nexusData.NexusHealth;
+        EarnCoins(startingCoins);
     }
 
 
@@ -51,7 +52,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
     }
 
-    public void EarnCoins(int amount)
+    public void EarnCoins(float amount)
     {
         _coins += amount;
         PlayerRewarded?.Invoke(_coins);

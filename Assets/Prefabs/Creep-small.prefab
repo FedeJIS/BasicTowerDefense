@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 2917516083661574320}
   - component: {fileID: -9201017187612086663}
   - component: {fileID: 6851450362822704706}
+  - component: {fileID: 8982051998136566047}
   m_Layer: 0
   m_Name: Creep-small
   m_TagString: Untagged
@@ -368,6 +369,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8982051998136566047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062474898863262898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcef6f3c2ac2d449b2de6c77a91c43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7641877310818575618
 GameObject:
   m_ObjectHideFlags: 0

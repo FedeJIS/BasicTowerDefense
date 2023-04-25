@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58cf7d9277fec2a479f1a0ed9eb66eb0, type: 2}
   - {fileID: 11400000, guid: 8a9fa700f11c8ce44a4776aeb25aa73e, type: 2}
   nexusData: {fileID: 11400000, guid: 0c94e217b23ad8b4b9596af6b2e39388, type: 2}
+  startingCoins: 20

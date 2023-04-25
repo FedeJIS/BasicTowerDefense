@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileData : MonoBehaviour
+[CreateAssetMenu(menuName = "Assets/ScriptableObjects/Projectiles/New Projectile Data", order = 0, fileName = "New Projectile Data")]
+public class ProjectileData : ScriptableData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   [SerializeField] private float cadence;
+   [SerializeField] private float damage;
+   [SerializeField] private float speed;
+   [SerializeField] private float lifeSpan;
+   public float Cadence => cadence;
+   public float Damage => damage;
+   public float Speed => speed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public float LifeSpan => lifeSpan;
 }

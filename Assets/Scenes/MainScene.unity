@@ -528,6 +528,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint - 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
 --- !u!4 &266367352 stripped
@@ -569,7 +573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &455538552
@@ -824,6 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wonScreen: {fileID: 8767247216979472048, guid: fdaa60ba925ea4ad78e77997673c4c0f, type: 3}
   lostScreen: {fileID: 8767247216979472048, guid: 00e34a4cbdf924c0d8fee7214288eaf7, type: 3}
+  nextWaveScreen: {fileID: 3871293165961949741, guid: 1dbb2c0db60f25847918c71d9290b9bd, type: 3}
   coinsAmount: {fileID: 3713951}
 --- !u!1 &896869051
 GameObject:
@@ -1278,6 +1283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base
       objectReference: {fileID: 0}
+    - target: {fileID: 3563692720844785907, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7862379436342573650, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}
       propertyPath: m_Radius
       value: 1
@@ -1338,6 +1347,10 @@ PrefabInstance:
     - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
       propertyPath: m_Name
       value: SpawnPoint - 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
@@ -1488,6 +1501,10 @@ PrefabInstance:
     - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
       propertyPath: m_Name
       value: SpawnPoint - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
@@ -1924,6 +1941,10 @@ PrefabInstance:
     - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
       propertyPath: m_Name
       value: SpawnPoint - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937194295047700805, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1437a84a99e84d749207c69cf8e4ac4, type: 3}

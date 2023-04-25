@@ -5,7 +5,10 @@ public class LevelData : ScriptableObject
 {
    [SerializeField] private WaveData[] waveData;
    [SerializeField] private NexusData nexusData;
+   [SerializeField] private int startingCoins;
 
    public WaveData[] WaveData => waveData;
    public NexusData NexusData => nexusData;
+
+   public int StartingCoins => startingCoins;
 }

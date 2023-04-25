@@ -82,7 +82,4 @@ public class TurretBuilder : MonoBehaviour, IInitializable
         };
 
     }
-    
-
-  
 }

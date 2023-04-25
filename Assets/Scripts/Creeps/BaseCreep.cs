@@ -7,7 +7,9 @@ public class BaseCreep : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CreepData data;
 
-    public Action<int> CreepKilled;
+    protected MoveTowardsTarget _moveTowardsTarget;
+
+    public Action<float> CreepKilled;
 
     protected float CurrentHealth;
 
@@ -17,16 +19,14 @@ public class BaseCreep : MonoBehaviour, IDamageable
     {
         CurrentHealth = data.Health;
         _enemyBase = GameObject.Find("Base").transform;
+        _moveTowardsTarget = GetComponent<MoveTowardsTarget>();
+        _moveTowardsTarget.Target = _enemyBase;
+        _moveTowardsTarget.Speed = data.Speed;
     }
 
     private void OnDestroy()
     {
         CreepKilled = null;
-    }
-
-    private void MoveTowardsBase()
-    {
-        
     }
 
     public float CauseDamage()
@@ -36,6 +36,7 @@ public class BaseCreep : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(float damage)
     {
+        Debug.Log(gameObject.name + "received: "+ damage +"of damage.");
         CurrentHealth -= damage;
 
         if (CurrentHealth <= 0)
@@ -58,21 +59,13 @@ public class BaseCreep : MonoBehaviour, IDamageable
         {
             ReceiveDamage(damageable.CauseDamage());
         }
-    }
 
-    protected void Update()
-    {
-        MoveTowardsTarget(_enemyBase);
-    }
-
-    protected void MoveTowardsTarget(Transform target)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _enemyBase.position, data.Speed * Time.deltaTime);
-        
-        var direction = target.position - transform.position;
-        if (direction != Vector3.zero)
+        var sideEffect = collision.gameObject.GetComponent<ISideEffect>();
+        if (sideEffect != null)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            sideEffect.ApplyEffect(gameObject);
         }
     }
+
+
 }

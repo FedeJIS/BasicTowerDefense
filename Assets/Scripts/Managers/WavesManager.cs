@@ -17,7 +17,8 @@ public class WavesManager : MonoBehaviour
 
     public Action NoWavesLeft;
     public Action WaveFinished;
-    public Action<int> CreepKilled;
+    public Action<WaveData> WaveStarted;
+    public Action<float> CreepKilled;
 
     private GenericFactory<CreepData> creepFactory;
 
@@ -34,6 +35,8 @@ public class WavesManager : MonoBehaviour
 
     private IEnumerator SpawnCoroutine()
     {
+        yield return new WaitForSeconds(GameManager.WaitTime);
+        
         _currentCreepsKilled = _currentWaveData.CreepsAmount;
         
         int creepsAmount = _currentWaveData.CreepsAmount;
@@ -53,7 +56,7 @@ public class WavesManager : MonoBehaviour
 
     }
 
-    private void CountKilledCreeps(int reward)
+    private void CountKilledCreeps(float reward)
     {
         _currentCreepsKilled--;
         
@@ -75,6 +78,10 @@ public class WavesManager : MonoBehaviour
         SpawnWave();
         
         _currentWaveIndex++;
+        
+        WaveStarted?.Invoke(_currentWaveData);
+        
+        
     }
 
     #region Random Methods

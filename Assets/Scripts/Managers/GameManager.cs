@@ -11,22 +11,38 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TurretBuilder turretBuilder;
 
     public static Action<bool> PlayerWon;
+    public static Action<WaveData> WaveStarted;
+    
+    public const float WaitTime = 3f;
+    
     void Start()
     {
         wavesManager.WavesData = levelData.WaveData;
         wavesManager.WaveFinished += NextWave;
         wavesManager.NoWavesLeft += GameWon;
         wavesManager.CreepKilled += EarnCoins;
-        
-        playerManager.SetUpPlayer(levelData.NexusData);
+        wavesManager.WaveStarted += WaveHasStarted;
+
+        playerManager.SetUpPlayer(levelData.NexusData,levelData.StartingCoins);
         playerManager.PlayerLost += GameLost;
 
         turretBuilder.TurretPlaced += TakeCoins;
-        wavesManager.NextWave();
+        NextWave();
     }
 
     void NextWave()
     {
+        StartCoroutine(Rest());
+    }
+
+    void WaveHasStarted(WaveData waveData)
+    {
+        WaveStarted?.Invoke(waveData);
+    }
+
+    IEnumerator Rest()
+    {
+        yield return new WaitForSeconds(WaitTime);
         wavesManager.NextWave();
     }
 
@@ -42,7 +58,7 @@ public class GameManager : MonoBehaviour
         PlayerWon?.Invoke(true);
     }
 
-    void EarnCoins(int reward)
+    void EarnCoins(float reward)
     {
         playerManager.EarnCoins(reward);
     }

@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14c1cf4345f36f4383f16fa52c9eb1e, type: 3}
-  m_Name: WaveData_01
+  m_Script: {fileID: 11500000, guid: fd92b3f50a3c8bc43948b9f025385525, type: 3}
+  m_Name: BaseProjectile
   m_EditorClassIdentifier: 
-  waveName: WAVE 1
-  creepsAmount: 10
-  timeToSpawn: 3
+  dataName: BaseProjectile
+  id: 0
+  prefab: {fileID: 3935586291500796742, guid: e320e9ed11ad76a48898f807f4bfef82, type: 3}
+  cadence: 1
+  damage: 2
+  speed: 30
+  lifeSpan: 1
