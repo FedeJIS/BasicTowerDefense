@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c5360793444bf469c15b4ae969986f, type: 3}
-  m_Name: TurretFactory
+  m_Script: {fileID: 11500000, guid: b637e204688d4504b9d831e983190c6b, type: 3}
+  m_Name: GenericData
   m_EditorClassIdentifier: 
-  turretsData:
-  - {fileID: 11400000, guid: 68346237ac936ce438e02e35304d1e58, type: 2}
-  - {fileID: 11400000, guid: 42d508f8806901e4aa50e50afb9c836c, type: 2}
+  dataName: 
+  id: 0
+  prefab: {fileID: 0}

@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class WavesManager : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private CreepFactory creepFactory;
     public WaveData[] WavesData { get; set; }
 
     private int _currentWaveIndex;
@@ -18,9 +18,12 @@ public class WavesManager : MonoBehaviour
     public Action NoWavesLeft;
     public Action WaveFinished;
 
+    private GenericFactory<CreepData> creepFactory;
+
+    private const string dataPath = "ScriptableData/CreepsData";
     private void Start()
     {
-        creepFactory.InitializeCreepFactory();
+        creepFactory = new GenericFactory<CreepData>(dataPath);
     }
 
     private void SpawnWave()
@@ -38,7 +41,7 @@ public class WavesManager : MonoBehaviour
         {
             creepsAmount--;
 
-            var creep = creepFactory.FabricateRandomCreep(GetRandomSpawnPoint()).GetComponent<BaseCreep>();
+            var creep = creepFactory.FabricateRandomInPosition(GetRandomSpawnPoint()).GetComponent<BaseCreep>();
             
             creep.CreepKilled += CountKilledCreeps;
 

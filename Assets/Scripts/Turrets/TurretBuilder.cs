@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class TurretBuilder : MonoBehaviour, IInitializable
 {
-    [SerializeField] private TurretFactory turretFactory;
+    private GenericFactory<TurretData> _turretFactory;
+    
+    
+    private const string dataPath = "ScriptableData/TurretsData";
 
     private Transform _turretContainer;
     public void Initialize()
     {
         CreateTurretComponent.BuildTurretClicked += BuildTurret;
-        
-        turretFactory.InitializeTurretFactory();
+
+        _turretFactory = new GenericFactory<TurretData>(dataPath);
         
         _turretContainer = new GameObject("Turret Container").transform;
         
@@ -37,7 +40,7 @@ public class TurretBuilder : MonoBehaviour, IInitializable
     private void BuildTurret(TurretData selectedTurret)
     {
         //Create Turret to Place
-        var turretToPlace = turretFactory.CreateTurretFromType(selectedTurret.Type);
+        var turretToPlace = _turretFactory.FabricateById(selectedTurret.Id);
 
         if (turretToPlace == null) return;
 
