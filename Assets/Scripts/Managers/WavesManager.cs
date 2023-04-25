@@ -25,26 +25,20 @@ public class WavesManager : MonoBehaviour
     private IEnumerator SpawnCoroutine()
     {
         _currentCreepsKilled = _currentWaveData.CreepsAmount;
-        int creepsAmount = _currentWaveData.CreepsAmount;
-        var creepsList = new List<BaseCreep>();
         
+        int creepsAmount = _currentWaveData.CreepsAmount;
+
         while (creepsAmount > 0)
         {
-            var randomAmount = GetRandomCreepAmount();
+            creepsAmount--;
+
+            var creep = creepFactory.FabricateRandomCreep(GetRandomSpawnPoint()).GetComponent<BaseCreep>();
             
-            creepsAmount -= randomAmount;
-
-            var creeps = creepFactory.FabricateRandomCreepWave(randomAmount,GetRandomSpawnPoint(),healthCanvas);
-
-            foreach (var creep in creeps)
-            {
-                creep.CreepKilled += CountKilledCreeps;
-            }
+            creep.CreepKilled += CountKilledCreeps;
 
             yield return new WaitForSeconds(_currentWaveData.TimeToSpawn);
         }
         
-        WaveFinished?.Invoke();
     }
 
     private void CountKilledCreeps()

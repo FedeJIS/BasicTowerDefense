@@ -18,7 +18,11 @@ public class BaseCreep : MonoBehaviour, IDamageable
         CurrentHealth = data.Health;
         _enemyBase = GameObject.Find("Base").transform;
     }
-    
+
+    private void OnDestroy()
+    {
+        CreepKilled = null;
+    }
 
     private void MoveTowardsBase()
     {
@@ -48,6 +52,7 @@ public class BaseCreep : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name.Contains("Creep")) return;
         var damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {

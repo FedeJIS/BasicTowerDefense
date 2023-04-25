@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14c1cf4345f36f4383f16fa52c9eb1e, type: 3}
   m_Name: WaveData_01
   m_EditorClassIdentifier: 
-  creepsAmount: 5
-  timeToSpawn: 5
+  creepsAmount: 10
+  timeToSpawn: 1
