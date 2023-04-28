@@ -6,13 +6,13 @@ public class FrostProjectile : Projectile, ISideEffect
 {
     [SerializeField] private Material frostMaterial;
     private const int EffectTime = 3;
-    
-
     public void ApplyEffect(GameObject other)
     {
         var moveTowards = other.GetComponent<MoveTowardsTarget>();
         
         if(!moveTowards) return;
+        
+        if (!gameObject.activeSelf) return;
         
         StartCoroutine(SideEffectCoroutine(moveTowards));
 
@@ -36,5 +36,4 @@ public class FrostProjectile : Projectile, ISideEffect
         
         renderer.material = currentMaterial;
     }
-    
 }

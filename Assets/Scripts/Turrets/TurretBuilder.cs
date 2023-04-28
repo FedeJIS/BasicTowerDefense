@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretBuilder : MonoBehaviour, IInitializable
+public class TurretBuilder : MonoBehaviour
 {
     [SerializeField] private Transform parent;
     [SerializeField] private GameObject turretButtonPrefab;
     private GenericFactory<TurretData> _turretFactory;
 
     public Action<int> TurretPlaced;
-    private const string dataPath = "ScriptableData/TurretsData";
+    private const string DataPath = "ScriptableData/TurretsData";
 
     private Transform _turretContainer;
     public void Initialize()
@@ -18,7 +18,7 @@ public class TurretBuilder : MonoBehaviour, IInitializable
         
         CreateTurretComponent.BuildTurretClicked += BuildTurret;
 
-        _turretFactory = new GenericFactory<TurretData>(dataPath);
+        _turretFactory = new GenericFactory<TurretData>(DataPath);
         
         DisplayTurretButtons();
         
@@ -46,7 +46,6 @@ public class TurretBuilder : MonoBehaviour, IInitializable
     {
         Initialize();
     }
-   
 
     private void BuildTurret(TurretData selectedTurret)
     {
@@ -57,7 +56,7 @@ public class TurretBuilder : MonoBehaviour, IInitializable
 
         if (turretToPlace == null) return;
 
-        var turret = turretToPlace.GetComponent<BaseTurret>();
+        var turret = turretToPlace.Item2.GetComponent<BaseTurret>();
         
         turret.transform.SetParent(_turretContainer);
 
@@ -72,13 +71,13 @@ public class TurretBuilder : MonoBehaviour, IInitializable
 
         var turretPlacer = turretPlacerGo.GetComponent<TurretPlacer>();
 
-        turretPlacer.InitializeTurretPlacer(turretToPlace.transform);
+        turretPlacer.InitializeTurretPlacer(turret.transform);
         
+        //Place Turret
         turretPlacer.TurretPlaced += () =>
         {
             turret.Defend();
             TurretPlaced?.Invoke(selectedTurret.BuildCost);
-            
         };
 
     }

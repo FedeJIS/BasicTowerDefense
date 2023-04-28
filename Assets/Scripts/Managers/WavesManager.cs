@@ -20,12 +20,12 @@ public class WavesManager : MonoBehaviour
     public Action<WaveData> WaveStarted;
     public Action<float> CreepKilled;
 
-    private GenericFactory<CreepData> creepFactory;
+    private GenericPool<CreepData> creepPool;
 
     private const string dataPath = "ScriptableData/CreepsData";
     private void Start()
     {
-        creepFactory = new GenericFactory<CreepData>(dataPath);
+        creepPool = new GenericPool<CreepData>(dataPath);
     }
 
     private void SpawnWave()
@@ -43,13 +43,19 @@ public class WavesManager : MonoBehaviour
 
         while (creepsAmount > 0)
         {
+            yield return new WaitForSeconds(_currentWaveData.TimeToSpawn);
+           
             creepsAmount--;
 
-            var creep = creepFactory.FabricateRandomInPosition(GetRandomSpawnPoint()).GetComponent<BaseCreep>();
-            
-            creep.CreepKilled += CountKilledCreeps;
+            var creep = creepPool.GetRandom().Item2.GetComponent<BaseCreep>();
 
-            yield return new WaitForSeconds(_currentWaveData.TimeToSpawn);
+            creep.transform.position = GetRandomSpawnPoint().position;
+            
+            creep.Activate();
+            
+            creep.CreepKilled ??= CountKilledCreeps;
+
+           
         }
 
         yield return null;

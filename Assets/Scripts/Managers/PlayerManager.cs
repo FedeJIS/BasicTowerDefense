@@ -2,16 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerManager : MonoBehaviour, IDamageable
+public class PlayerManager : MonoBehaviour, IDamageable, IWallet
 {
-    [SerializeField] private HealthBarComponent _healthBarComponent;
+    [SerializeField] private HealthBarComponent healthBarComponent;
 
     private NexusData _nexusData;
     private float _nexusHealth;
 
     private static float _coins;
-
+    
     public static float PlayerCoins => _coins;
     public Action PlayerLost;
 
@@ -20,11 +21,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void SetUpPlayer(NexusData nexusData, int startingCoins)
     {
         _nexusData = nexusData;
-        _healthBarComponent.SetMaxValue(_nexusData.NexusHealth);
         _nexusHealth = nexusData.NexusHealth;
-        EarnCoins(startingCoins);
+        healthBarComponent.SetMaxValue(_nexusData.NexusHealth);
+        UpdateCoins(startingCoins);
     }
-
 
     public float CauseDamage()
     {
@@ -34,14 +34,20 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void ReceiveDamage(float damage)
     {
         _nexusHealth -= damage;
-        _healthBarComponent.UpdateHealth(_nexusHealth);
+        healthBarComponent.UpdateHealth(_nexusHealth);
 
         if (_nexusHealth <= 0)
         {
             PlayerLost?.Invoke();
         }
     }
-
+    
+    public void UpdateCoins(float amount)
+    {
+        _coins += amount;
+        PlayerRewarded?.Invoke(_coins);
+    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         var damageable = collision.gameObject.GetComponent<IDamageable>();
@@ -50,11 +56,5 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             ReceiveDamage(damageable.CauseDamage());
         }
-    }
-
-    public void EarnCoins(float amount)
-    {
-        _coins += amount;
-        PlayerRewarded?.Invoke(_coins);
     }
 }

@@ -12,21 +12,27 @@ public class GameManager : MonoBehaviour
 
     public static Action<bool> PlayerWon;
     public static Action<WaveData> WaveStarted;
+    public static bool IsGameOver;
     
     public const float WaitTime = 3f;
     
     void Start()
     {
+        //Waves Manager Events
         wavesManager.WavesData = levelData.WaveData;
         wavesManager.WaveFinished += NextWave;
         wavesManager.NoWavesLeft += GameWon;
         wavesManager.CreepKilled += EarnCoins;
         wavesManager.WaveStarted += WaveHasStarted;
 
+        //Player Manager Events + Setup
         playerManager.SetUpPlayer(levelData.NexusData,levelData.StartingCoins);
         playerManager.PlayerLost += GameLost;
 
+        //Turret Builder Events
         turretBuilder.TurretPlaced += TakeCoins;
+        
+        //Start First Wave
         NextWave();
     }
 
@@ -48,24 +54,24 @@ public class GameManager : MonoBehaviour
 
     void GameLost()
     {
-        Debug.Log("Player Lost");
+        IsGameOver = true;
         PlayerWon?.Invoke(false);
     }
 
     void GameWon()
     {
-        Debug.Log("Player Won!");
+        IsGameOver = true;
         PlayerWon?.Invoke(true);
     }
 
     void EarnCoins(float reward)
     {
-        playerManager.EarnCoins(reward);
+        playerManager.UpdateCoins(reward);
     }
 
     void TakeCoins(int amount)
     {
-        playerManager.EarnCoins(-amount);
+        playerManager.UpdateCoins(-amount);
     }
     
 }

@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class BaseTurret : MonoBehaviour
 {
-    [SerializeField] protected ProjectileData projectileData;
-    [SerializeField] protected Transform spawnPoint;
+    [SerializeField] private ProjectileData projectileData;
+    [SerializeField] private Transform spawnPoint;
 
-    protected Transform _aimTarget;
-    protected bool _turretPlaced;
+    private Transform _aimTarget;
+    private bool _turretPlaced;
+
+    private GenericPool<ProjectileData> _projectilePool;
+
+    private string dataPath = "ScriptableData/ProjectilesData";
+
+    private void Awake()
+    {
+        _projectilePool = new GenericPool<ProjectileData>(dataPath);
+    }
 
     public void Defend()
     {
@@ -17,34 +26,48 @@ public class BaseTurret : MonoBehaviour
         Debug.Log(name + " started to defend");
     }
 
-    protected void Shoot()
+    private void Shoot()
     {
         StartCoroutine(ShootingCoroutine());
     }
 
-    protected IEnumerator ShootingCoroutine()
+    private IEnumerator ShootingCoroutine()
     {
-        while (true)
+        while (!GameManager.IsGameOver)
         {
             if (_aimTarget == null) yield return null;
-            var projectile = Instantiate(projectileData.Prefab, spawnPoint).GetComponent<Projectile>();
+            yield return new WaitForSeconds(projectileData.Cadence);
+            
+            var projectile = _projectilePool.Get(projectileData.Id).Item2.GetComponent<Projectile>();
+           
+            projectile.transform.position = spawnPoint.position;
+            projectile.Activate();
             projectile.SetUpProjectile(projectileData);
             projectile.SetUpTarget(_aimTarget);
-            yield return new WaitForSeconds(projectileData.Cadence);
+
+            projectile.OnDeactivation ??= CleanTargets;
+          
         }
+        
+        Destroy(gameObject);
     }
 
-    protected void OnCollisionEnter(Collision collision)
+    private void CleanTargets()
+    {
+        _aimTarget = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
     {
        ShootOnlyAtTarget(collision);
     }
     
-    protected void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         ShootOnlyAtTarget(collision);
     }
 
-    protected void ShootOnlyAtTarget(Collision collision)
+    private void ShootOnlyAtTarget(Collision collision)
     {
         if (!_turretPlaced) return;
         if (_aimTarget != null) return;
@@ -53,7 +76,7 @@ public class BaseTurret : MonoBehaviour
         _aimTarget = collision.transform;
         Shoot();
     }
-    protected void OnCollisionExit(Collision other)
+    private void OnCollisionExit(Collision other)
     {
         if (_aimTarget == null) return;
         if (other.gameObject == _aimTarget.gameObject) _aimTarget = null;

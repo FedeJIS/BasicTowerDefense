@@ -9,6 +9,11 @@ public class CreepData : ScriptableData
     [SerializeField] private float speed;
     [SerializeField] private float reward;
 
+    [SerializeField] private Material material;
+    
+    
+    public Material Material => material;
+
     public float Damage => damagePoints;
     public float Health => health;
     public float Speed => speed;

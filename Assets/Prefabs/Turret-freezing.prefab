@@ -54,9 +54,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6631560805576656205}
-  - component: {fileID: 275789271141835622}
   - component: {fileID: 6689930103704136650}
   - component: {fileID: 683733881756337346}
+  - component: {fileID: 4284762193622166638}
   m_Layer: 0
   m_Name: Turret-freezing
   m_TagString: Untagged
@@ -81,20 +81,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &275789271141835622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3312728997542272041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bbae210d6f6d246800d07f1ab64835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: 3d71b73330c7e4049abacdc8222469ed, type: 2}
-  spawnPoint: {fileID: 3141713354306363434}
 --- !u!54 &6689930103704136650
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,6 +110,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4284762193622166638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3312728997542272041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f7a746198012e4f80d4fc763a4cd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: 3d71b73330c7e4049abacdc8222469ed, type: 2}
+  spawnPoint: {fileID: 3141713354306363434}
 --- !u!1 &3331154649744156603
 GameObject:
   m_ObjectHideFlags: 0

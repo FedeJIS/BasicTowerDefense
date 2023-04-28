@@ -19,3 +19,4 @@ MonoBehaviour:
   health: 8
   speed: 2
   reward: 1
+  material: {fileID: 2100000, guid: ad342572e3f02422893cb31768fb30f6, type: 2}

@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292735afd3c482540930fcd3d15b1f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 6504657453555507190}
   frostMaterial: {fileID: 2100000, guid: 1249b57fe272a3044b14c9dec9978c3b, type: 2}
 --- !u!54 &5591499572028988890
 Rigidbody:

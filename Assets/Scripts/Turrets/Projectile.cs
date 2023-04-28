@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IDamageable
+public class Projectile : MonoBehaviour, IDamageable, IPoolable
 {
+    [SerializeField] protected SphereCollider _collider;
+    
     protected Transform _target;
     protected ProjectileData _projectileData;
+
+    public Action OnDeactivation;
+ 
 
     public void SetUpProjectile(ProjectileData projectileData)
     {
@@ -17,11 +22,11 @@ public class Projectile : MonoBehaviour, IDamageable
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Recycle();
             return;
         }
         _target = target;
-        Destroy(gameObject,_projectileData.LifeSpan);
+        StartCoroutine(RecycleInTime(_projectileData.LifeSpan));
     }
     public float CauseDamage()
     {
@@ -30,15 +35,15 @@ public class Projectile : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(float damage)
     {
-        Destroy(gameObject);
+        Recycle();
     }
 
-    private void Update()
+    protected void Update()
     {
         if(_target) FollowTarget();
     }
     
-    private void FollowTarget()
+    protected void FollowTarget()
     {
         // Calculate the direction from the current position to the target position
         Vector3 direction = _target.position - transform.position;
@@ -50,12 +55,33 @@ public class Projectile : MonoBehaviour, IDamageable
         transform.Translate(direction * _projectileData.Speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         var damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
             ReceiveDamage(damageable.CauseDamage());
         }
+    }
+
+    public virtual void Recycle()
+    {
+        _target = null;
+        OnDeactivation?.Invoke();
+        _collider.enabled = false;
+        transform.position = new Vector3(0, -2000, 0);
+        gameObject.SetActive(false);
+       
+    }
+
+    public void Activate()
+    {
+        _collider.enabled = true;
+    }
+
+    protected IEnumerator RecycleInTime(float timeToRecycle)
+    {
+        yield return new WaitForSeconds(timeToRecycle);
+        Recycle();
     }
 }

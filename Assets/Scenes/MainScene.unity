@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583d16c2e21b46d42b2c019bda3938fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthBarComponent: {fileID: 1460751825}
+  healthBarComponent: {fileID: 1460751825}
 --- !u!54 &1195589892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1289,7 +1289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862379436342573650, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}
       propertyPath: m_Radius
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458d7fbe6b08d464f9bbc0ea868876a4, type: 3}

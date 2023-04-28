@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ public class GenericFactory<T> where T : ScriptableData
         }
     }
 
-    public GameObject FabricateById(int id)
+    public Tuple<T,GameObject> FabricateById(int id)
     {
         var scriptableData = GetDataFromId(id);
 
@@ -31,13 +32,15 @@ public class GenericFactory<T> where T : ScriptableData
         
         scriptableInstance.name = scriptableData.DataName + scriptableData.Id;
         
-
-        return scriptableInstance;
+        return new Tuple<T, GameObject>(scriptableData,scriptableInstance);
     }
 
-    public GameObject FabricateRandomInPosition(Transform position)
+    public Tuple<T,GameObject> FabricateRandomInPosition(Transform position)
     {
-        return GameObject.Instantiate(GetRandomElement(), position);
+        var randomElement = GetRandomElement();
+        var gameObjectInstance = GameObject.Instantiate(randomElement.Item2, position);
+
+        return new Tuple<T, GameObject>(randomElement.Item1, gameObjectInstance);
     }
 
     private T GetDataFromId(int id)
@@ -47,13 +50,13 @@ public class GenericFactory<T> where T : ScriptableData
         return _map[id];
     }
     
-    private GameObject GetRandomElement()
+    private Tuple<T, GameObject> GetRandomElement()
     {
         System.Random rand = new System.Random();
         var count = _map.Count;
         var index = rand.Next(0, count);
         var data =  _map.ElementAt(index).Value;
-        return data.Prefab;
+        return new Tuple<T, GameObject>(data,data.Prefab);
     }
 
     public List<T> GetAllData()

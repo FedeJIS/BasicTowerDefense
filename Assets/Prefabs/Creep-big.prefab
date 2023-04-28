@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 17fd1285b2c728145835deecccf8e2c1, type: 2}
+  _collider: {fileID: 3621311716866910278}
+  _material: {fileID: 2100000, guid: ad342572e3f02422893cb31768fb30f6, type: 2}
 --- !u!54 &1398055258313630496
 Rigidbody:
   m_ObjectHideFlags: 0
