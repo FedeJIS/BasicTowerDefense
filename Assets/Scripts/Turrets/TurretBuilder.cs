@@ -6,6 +6,7 @@ using UnityEngine;
 public class TurretBuilder : MonoBehaviour
 {
     [SerializeField] private Transform parent;
+    [SerializeField] private Transform turretsSpawnPool;
     [SerializeField] private GameObject turretButtonPrefab;
     private GenericFactory<TurretData> _turretFactory;
 
@@ -58,7 +59,7 @@ public class TurretBuilder : MonoBehaviour
 
         var turret = turretToPlace.Item2.GetComponent<BaseTurret>();
         
-        turret.transform.SetParent(_turretContainer);
+        turret.transform.SetParent(turretsSpawnPool);
 
         if (!turret) return;
         

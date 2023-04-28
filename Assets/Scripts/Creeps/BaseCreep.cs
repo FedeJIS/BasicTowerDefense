@@ -8,25 +8,23 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
     [SerializeField] protected CreepData data;
     [SerializeField] protected BoxCollider _collider;
 
+    public Action<float> CreepKilled;
+    
     private Renderer _renderer;
+    private Transform _enemyBase;
 
     protected MoveTowardsTarget _moveTowardsTarget;
-
-    public Action<float> CreepKilled;
-
-    protected float CurrentHealth;
-
-    private Transform _enemyBase;
+    protected HealthController _healthController;
 
     protected void Awake()
     {
-        CurrentHealth = data.Health;
         _enemyBase = GameObject.Find("Base").transform;
+        _renderer = GetComponentInChildren<Renderer>();
         _moveTowardsTarget = GetComponent<MoveTowardsTarget>();
         _moveTowardsTarget.Target = _enemyBase;
         _moveTowardsTarget.Speed = data.Speed;
-        _renderer = GetComponentInChildren<Renderer>();
-        GameManager.PlayerWon += (flag) => Destroy(gameObject);
+        _healthController = new HealthController(data.Health);
+        _healthController.OnReachedZero(Recycle);
     }
 
     private void OnDestroy()
@@ -41,13 +39,7 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
 
     public void ReceiveDamage(float damage)
     {
-        Debug.Log(gameObject.name + "received: "+ damage +"of damage.");
-        CurrentHealth -= damage;
-
-        if (CurrentHealth <= 0)
-        {
-            Recycle();
-        }
+        _healthController.TakeDamage(damage);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -80,7 +72,7 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
     {
         _moveTowardsTarget.enabled = true;
         _collider.enabled = true;
-        CurrentHealth = data.Health;
+        _healthController.Heal();
         _renderer.material = data.Material;
         _moveTowardsTarget.Speed = data.Speed;
     }

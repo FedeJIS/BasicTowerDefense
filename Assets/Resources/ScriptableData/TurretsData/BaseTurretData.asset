@@ -15,5 +15,4 @@ MonoBehaviour:
   dataName: Base
   id: 1
   prefab: {fileID: 3312728997542272041, guid: ad95cf0532fb840edb99302196037be4, type: 3}
-  damagePoints: 10
   buildCost: 5

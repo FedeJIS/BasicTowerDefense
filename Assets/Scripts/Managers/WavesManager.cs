@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class WavesManager : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private Transform creepSpawnPool;
     public WaveData[] WavesData { get; set; }
 
     private int _currentWaveIndex;
@@ -50,6 +51,8 @@ public class WavesManager : MonoBehaviour
             var creep = creepPool.GetRandom().Item2.GetComponent<BaseCreep>();
 
             creep.transform.position = GetRandomSpawnPoint().position;
+            
+            creep.transform.SetParent(creepSpawnPool);
             
             creep.Activate();
             

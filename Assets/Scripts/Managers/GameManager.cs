@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         turretBuilder.TurretPlaced += TakeCoins;
         
         //Start First Wave
-        NextWave();
+        wavesManager.NextWave();
     }
 
     void NextWave()

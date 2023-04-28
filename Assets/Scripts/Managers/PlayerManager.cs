@@ -4,24 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerManager : MonoBehaviour, IDamageable, IWallet
+public class PlayerManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private HealthBarComponent healthBarComponent;
 
     private NexusData _nexusData;
-    private float _nexusHealth;
+    public static float PlayerCoins => _coinsController.GetCoins();
 
-    private static float _coins;
-    
-    public static float PlayerCoins => _coins;
     public Action PlayerLost;
 
     public static Action<float> PlayerRewarded;
 
+    private HealthController _healthController;
+    
+    private static CoinsController _coinsController;
+
     public void SetUpPlayer(NexusData nexusData, int startingCoins)
     {
         _nexusData = nexusData;
-        _nexusHealth = nexusData.NexusHealth;
+        _coinsController = new CoinsController();
+        _healthController = new HealthController(_nexusData.NexusHealth);
+        _healthController.OnReachedZero(() => PlayerLost?.Invoke());
         healthBarComponent.SetMaxValue(_nexusData.NexusHealth);
         UpdateCoins(startingCoins);
     }
@@ -33,19 +36,14 @@ public class PlayerManager : MonoBehaviour, IDamageable, IWallet
 
     public void ReceiveDamage(float damage)
     {
-        _nexusHealth -= damage;
-        healthBarComponent.UpdateHealth(_nexusHealth);
-
-        if (_nexusHealth <= 0)
-        {
-            PlayerLost?.Invoke();
-        }
+        _healthController.TakeDamage(damage);
+        healthBarComponent.UpdateHealth(_healthController.Health);
     }
     
     public void UpdateCoins(float amount)
     {
-        _coins += amount;
-        PlayerRewarded?.Invoke(_coins);
+        _coinsController.UpdateCoins(amount);
+        PlayerRewarded?.Invoke(_coinsController.GetCoins());
     }
     
     private void OnCollisionEnter(Collision collision)

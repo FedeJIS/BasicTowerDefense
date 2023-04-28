@@ -7,6 +7,8 @@ public class BaseTurret : MonoBehaviour
 {
     [SerializeField] private ProjectileData projectileData;
     [SerializeField] private Transform spawnPoint;
+    
+    private Transform projectileSpawnPool;
 
     private Transform _aimTarget;
     private bool _turretPlaced;
@@ -18,6 +20,7 @@ public class BaseTurret : MonoBehaviour
     private void Awake()
     {
         _projectilePool = new GenericPool<ProjectileData>(dataPath);
+        projectileSpawnPool = GameObject.FindGameObjectWithTag("ProjectilePool").transform;
     }
 
     public void Defend()
@@ -41,6 +44,7 @@ public class BaseTurret : MonoBehaviour
             var projectile = _projectilePool.Get(projectileData.Id).Item2.GetComponent<Projectile>();
            
             projectile.transform.position = spawnPoint.position;
+            projectile.transform.parent = projectileSpawnPool;
             projectile.Activate();
             projectile.SetUpProjectile(projectileData);
             projectile.SetUpTarget(_aimTarget);

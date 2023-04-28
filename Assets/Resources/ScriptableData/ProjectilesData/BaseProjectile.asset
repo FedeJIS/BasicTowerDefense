@@ -15,7 +15,7 @@ MonoBehaviour:
   dataName: BaseProjectile
   id: 0
   prefab: {fileID: 3935586291500796742, guid: e320e9ed11ad76a48898f807f4bfef82, type: 3}
-  cadence: 1
-  damage: 2
+  cadence: 0.5
+  damage: 4
   speed: 30
   lifeSpan: 1

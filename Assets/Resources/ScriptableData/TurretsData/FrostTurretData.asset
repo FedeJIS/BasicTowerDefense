@@ -15,5 +15,5 @@ MonoBehaviour:
   dataName: Frost
   id: 2
   prefab: {fileID: 3312728997542272041, guid: 2db840306d61e4e1d8ed7a2a17e59dc5, type: 3}
-  damagePoints: 5
+  damagePoints: 30
   buildCost: 5

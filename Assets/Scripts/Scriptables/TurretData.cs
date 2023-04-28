@@ -5,10 +5,7 @@ using UnityEngine;
 [Serializable]
 public class TurretData : ScriptableData
 {
-    [SerializeField] private int damagePoints;
     [SerializeField] private int buildCost;
-
-    public int DamagePoints => damagePoints;
     public int BuildCost => buildCost;
 
 }
