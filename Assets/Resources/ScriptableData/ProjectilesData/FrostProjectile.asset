@@ -16,6 +16,6 @@ MonoBehaviour:
   id: 1
   prefab: {fileID: 6504657453555507191, guid: 9411a7e2e87561e44ba16dc069c14df7, type: 3}
   cadence: 3
-  damage: 8
+  damage: 3
   speed: 20
-  lifeSpan: 1.5
+  lifeSpan: 3

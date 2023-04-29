@@ -44,7 +44,8 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("Creep")) return;
+        if(collision.gameObject.GetComponent<BaseCreep>()) return;
+        
         var damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
