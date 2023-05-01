@@ -9,14 +9,14 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
     [SerializeField] protected BoxCollider _collider;
 
     public Action<float> CreepKilled;
-    
+
     private Renderer _renderer;
     private Transform _enemyBase;
 
-    protected MoveTowardsTarget _moveTowardsTarget;
-    protected HealthController _healthController;
+    private MoveTowardsTarget _moveTowardsTarget;
+    private HealthController _healthController;
 
-    protected void Awake()
+    private void Awake()
     {
         _enemyBase = GameObject.Find("Base").transform;
         _renderer = GetComponentInChildren<Renderer>();
@@ -62,11 +62,11 @@ public class BaseCreep : MonoBehaviour, IDamageable, IPoolable
 
     public void Recycle()
     {
-        CreepKilled?.Invoke(data.Reward);
         gameObject.SetActive(false);
         transform.position = new Vector3(0, -1000, 0);
         _moveTowardsTarget.enabled = false;
         _collider.enabled = false;
+        CreepKilled?.Invoke(data.Reward);
     }
 
     public void Activate()

@@ -15,7 +15,7 @@ MonoBehaviour:
   dataName: FrostProjectile
   id: 1
   prefab: {fileID: 6504657453555507191, guid: 9411a7e2e87561e44ba16dc069c14df7, type: 3}
-  cadence: 3
+  cadence: 1.5
   damage: 3
   speed: 20
   lifeSpan: 3
